@@ -1,10 +1,16 @@
 // Add imports here
-
-
+const BIP39 = require("bip39")
+const hdkey = require("ethereumjs-wallet/hdkey")  
+const Wallet = require('ethereumjs-wallet') 
+const keccak256 = require('js-sha3').keccak256;
+const EthereumTx = require('ethereumjs-tx') 
 
 // Add functions here
-
-
+// Generate a random mnemonic (uses crypto.randomBytes under the hood), defaults to 128-bits of entropy  
+function generateMnemonic(){  
+    return BIP39.generateMnemonic()  
+  }
+  
 
 /*
 

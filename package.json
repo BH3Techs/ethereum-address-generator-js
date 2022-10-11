@@ -17,5 +17,8 @@
     "js-sha3": "^0.8.0",
     "reload": "^3.0.5",
     "watchify": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bip39": "^3.0.0"
   }
 }
