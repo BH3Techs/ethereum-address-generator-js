@@ -10,8 +10,28 @@ const EthereumTx = require('ethereumjs-tx')
 function generateMnemonic(){  
     return BIP39.generateMnemonic()  
   }
-  
 
+function generateSeed(mnemonic){      
+    return BIP39.mnemonicToSeed(mnemonic)    
+  }  
+
+function generatePrivKey(mnemonic){  
+    const seed = generateSeed(mnemonic)  
+    return hdkey.fromMasterSeed(seed).derivePath(`m/44'/60'/0'/0/0`).getWallet().getPrivateKey()  
+}
+
+function derivePubKey(privKey){        
+    const wallet = Wallet.fromPrivateKey(privKey)            
+    return wallet.getPublicKey()    
+  }
+
+function deriveEthAddress(pubKey){    
+    const address = keccak256(pubKey) // keccak256 hash of  publicKey    
+    // Get the last 20 bytes of the public key    
+    return "0x" + address.substring(address.length - 40, address.length)    
+  }
+  
+var isValid = BIP39.validateMnemonic("Enter your mnemonic here")
 /*
 
 Do not edit code below this line.

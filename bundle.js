@@ -11,10 +11,10 @@ const EthereumTx = require('ethereumjs-tx')
 function generateMnemonic(){  
     return BIP39.generateMnemonic()  
   }
-  
+
 function generateSeed(mnemonic){      
-return BIP39.mnemonicToSeed(mnemonic)    
-}  
+    return BIP39.mnemonicToSeed(mnemonic)    
+  }  
 
 function generatePrivKey(mnemonic){  
     const seed = generateSeed(mnemonic)  
@@ -26,23 +26,13 @@ function derivePubKey(privKey){
     return wallet.getPublicKey()    
   }
 
-  function deriveEthAddress(pubKey){    
+function deriveEthAddress(pubKey){    
     const address = keccak256(pubKey) // keccak256 hash of  publicKey    
     // Get the last 20 bytes of the public key    
     return "0x" + address.substring(address.length - 40, address.length)    
   }
-
-  function getSignerAddress(signedTx){  
-    return "0x" + signedTx.getSenderAddress().toString('hex')
-  }
   
-  var isValid = BIP39.validateMnemonic("Enter your mnemonic here")  
-// This will return false because "Enter your mneomnic here" is not a valid phrase
-  function signTx(privKey, txData){  
-    const tx = new EthereumTx(txData)  
-    tx.sign(privKey)  
-    return tx  
-}
+var isValid = BIP39.validateMnemonic("Enter your mnemonic here")
 /*
 
 Do not edit code below this line.
