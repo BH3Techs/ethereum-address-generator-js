@@ -30,6 +30,17 @@ function deriveEthAddress(pubKey){
     // Get the last 20 bytes of the public key    
     return "0x" + address.substring(address.length - 40, address.length)    
   }
+
+function signTx(privKey, txData){  
+    const tx = new EthereumTx(txData)  
+    tx.sign(privKey)  
+    return tx  
+}
+
+function getSignerAddress(signedTx){  
+    return "0x" + signedTx.getSenderAddress().toString('hex')
+  }
+
   
 var isValid = BIP39.validateMnemonic("Enter your mnemonic here")
 /*
